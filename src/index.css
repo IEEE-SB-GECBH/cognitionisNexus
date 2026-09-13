@@ -3872,6 +3872,8 @@ body {
     width: 100%;
     text-align: center;
   }
+}
+
 /* ==========================================================================
    COLLAPSIBLE INFO PANEL (METRICS HUD) - FIXED FRAME & NAVBAR-STYLE
    ========================================================================== */
@@ -4278,35 +4280,7 @@ body {
   margin-top: 0.5rem;
 }
 
-/* Responsiveness Media Queries */
-@media (max-width: 768px) {
-  .desktop-table-container {
-    display: none;
-  }
 
-  .mobile-cards-container {
-    display: flex;
-  }
-
-  .filter-controls-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .dropdown-filters-group {
-    flex-direction: column;
-  }
-
-  .host-actions-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .btn-add-game {
-    width: 100%;
-    text-align: center;
-  }
-}
 
 /* Mobile & Tablet Drawer Behavior (<= 900px) */
 @media (max-width: 900px) {
@@ -4324,23 +4298,25 @@ body {
     animation: fadeIn 0.2s ease;
   }
 
-  /* Left Navigation Sidebar Drawer on Mobile - positioned below fixed header with solid background */
+  /* Left Navigation Sidebar Drawer on Mobile - sits cleanly below persistent header with solid opaque background */
   .collapsible-sidebar {
-    position: fixed;
-    top: 66px;
-    left: 0.65rem;
-    bottom: 0.65rem;
-    height: calc(100dvh - 80px) !important;
-    max-height: calc(100dvh - 80px) !important;
+    position: fixed !important;
+    top: 88px !important;
+    left: 0.65rem !important;
+    bottom: 0.65rem !important;
+    height: calc(100dvh - 100px) !important;
+    max-height: calc(100dvh - 100px) !important;
     min-height: unset !important;
     width: 270px !important;
     max-width: calc(100vw - 1.5rem) !important;
     min-width: unset !important;
     border-radius: 14px !important;
     border: 1px solid var(--accent-violet) !important;
-    background: #0d061a !important; /* Solid opaque background to prevent bleed-through */
-    z-index: 999;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(168, 85, 247, 0.35) !important;
+    background: #0d061a !important; /* Solid 100% opaque background to prevent bleed-through */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    z-index: 999 !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95), 0 0 25px rgba(168, 85, 247, 0.35) !important;
     transform: translateX(-120%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
     display: flex !important;
@@ -4352,58 +4328,101 @@ body {
   }
 
   .collapsible-sidebar.expanded {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
     padding: 1.15rem 1rem !important;
     width: 270px !important;
   }
 
   .collapsible-sidebar.collapsed {
-    transform: translateX(-120%);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    transform: translateX(-120%) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
     width: 270px !important;
-    padding: 0;
+    padding: 0 !important;
   }
 
   .collapsible-sidebar .sidebar-header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding-bottom: 8px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .collapsible-sidebar .sidebar-section-label {
+    display: block !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 1px !important;
+    color: var(--accent-light) !important;
+    font-family: var(--font-cyber) !important;
+    font-weight: 700 !important;
+  }
+
+  .collapsible-sidebar .sidebar-collapse-toggle-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .collapsible-sidebar .sidebar-menu-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    flex: 1;
-    margin-top: 8px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    margin-top: 8px !important;
   }
 
+  .collapsible-sidebar .sidebar-nav-btn {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 10px 12px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .collapsible-sidebar .sidebar-nav-btn .nav-label {
+    display: inline !important;
+  }
+
+  /* Bug 4 Fix: "Disconnect Session" button pinned to bottom of drawer content, visible without scrolling */
   .collapsible-sidebar .sidebar-footer-action {
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    width: 100%;
-    flex-shrink: 0;
+    margin-top: auto !important;
+    padding-top: 0.85rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    width: 100% !important;
+    flex-shrink: 0 !important;
+    display: block !important;
   }
 
   .collapsible-sidebar .btn-sidebar-logout {
-    width: 100%;
-    min-height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 0.82rem;
-    font-weight: 700;
+    width: 100% !important;
+    min-height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    background: rgba(239, 68, 68, 0.15) !important;
+    border: 1px solid #ef4444 !important;
+    color: #ef4444 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+  }
+
+  .collapsible-sidebar .btn-sidebar-logout .nav-label {
+    display: inline !important;
   }
 
   /* Desktop Right HUD Panel hidden on mobile (handled by inline toggle stack) */
@@ -4424,48 +4443,62 @@ body {
   }
 }
 
+/* Bug 2 Fix: Mobile Header Layout & Logo Anti-Overlap (<= 600px) */
 @media (max-width: 600px) {
   .dashboard-header {
-    padding: 0.5rem 0.65rem;
-    gap: 6px;
-    position: sticky;
-    top: 0.5rem;
-    z-index: 1000;
+    padding: 0.5rem 0.65rem !important;
+    gap: 8px !important;
+    position: sticky !important;
+    top: 0.5rem !important;
+    z-index: 1000 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
   .header-left {
-    gap: 6px;
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
+    gap: 8px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .brand-logo-area {
-    min-width: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    flex: 1 1 auto !important;
   }
 
   .brand-title-row {
-    min-width: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
   }
 
   .dashboard-header .brand-title {
-    font-size: 0.88rem !important;
+    font-size: clamp(0.78rem, 3.2vw, 0.92rem) !important;
     letter-spacing: 0.5px !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     display: block !important;
     margin: 0 !important;
+    min-width: 0 !important;
     max-width: 100% !important;
+    line-height: 1.2 !important;
+    text-align: left !important;
+  }
+
+  .dashboard-header .brand-title::before,
+  .dashboard-header .brand-title::after {
+    display: none !important;
   }
 
   .dashboard-header .brand-subtitle {
@@ -4480,34 +4513,34 @@ body {
   }
 
   .header-right {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-    z-index: 2;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
+    z-index: 2 !important;
   }
 
   .hamburger-btn {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 8px;
-    flex-shrink: 0;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    border-radius: 8px !important;
+    flex-shrink: 0 !important;
   }
 
   .bell-btn {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    flex-shrink: 0;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    flex-shrink: 0 !important;
   }
 
   .user-avatar-btn {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    font-size: 0.82rem;
-    flex-shrink: 0;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    font-size: 0.82rem !important;
+    flex-shrink: 0 !important;
   }
 
   .profile-dropdown-menu {
@@ -4516,7 +4549,12 @@ body {
   }
 }
 
+/* Bug 1 Fix: Login/Register Card mobile sizing & readability (<= 480px) */
 @media (max-width: 480px) {
+  .app-container {
+    padding: 0.75rem !important;
+  }
+
   .dashboard-layout {
     padding: 0.5rem 0.5rem 2rem;
   }
@@ -4525,61 +4563,79 @@ body {
     grid-template-columns: 1fr;
   }
 
-  /* Bug 1 Fix: Login/Register Card mobile sizing & readability */
   .auth-card {
-    padding: 1.75rem 1.25rem !important;
-    max-width: 100% !important;
+    padding: 1.75rem 1.15rem !important;
+    width: 100% !important;
+    max-width: calc(100vw - 1.5rem) !important;
     margin: 0.5rem auto !important;
     border-radius: 14px !important;
+    box-sizing: border-box !important;
   }
 
   .auth-card .brand-title {
-    font-size: 1.5rem !important;
+    font-size: clamp(1.6rem, 5.5vw + 0.2rem, 1.85rem) !important;
     letter-spacing: 1px !important;
-    margin-bottom: 0.35rem !important;
+    margin-bottom: 0.45rem !important;
     white-space: normal !important;
     text-align: center !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    line-height: 1.25 !important;
+    font-weight: 800 !important;
   }
 
   .auth-card .brand-subtitle {
-    font-size: 0.82rem !important;
+    font-size: 0.88rem !important;
     letter-spacing: 0.8px !important;
     display: block !important;
-    margin-bottom: 1.35rem !important;
+    margin-bottom: 1.5rem !important;
     text-align: center !important;
+    line-height: 1.4 !important;
   }
 
   .auth-card .form-label {
-    font-size: 0.85rem !important;
-    letter-spacing: 1px !important;
-    margin-bottom: 0.45rem !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.8px !important;
+    margin-bottom: 0.5rem !important;
     font-weight: 700 !important;
+    color: var(--text-secondary) !important;
+    line-height: 1.3 !important;
   }
 
   .auth-card .form-input {
-    font-size: 0.95rem !important;
-    padding: 11px 12px 11px 40px !important;
+    font-size: 1rem !important;
+    padding: 12px 14px 12px 42px !important;
   }
 
   .auth-card .input-icon {
-    left: 12px !important;
-    font-size: 1rem !important;
+    left: 14px !important;
+    font-size: 1.05rem !important;
   }
 
   .auth-card .form-group {
-    margin-bottom: 1.2rem !important;
+    margin-bottom: 1.25rem !important;
   }
 
+  .auth-card .btn-cyber,
   .auth-card .btn-submit {
-    padding: 13px !important;
-    font-size: 0.92rem !important;
+    padding: 13px 16px !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.8px !important;
+    font-weight: 700 !important;
+  }
+
+  .auth-card .auth-link {
+    font-size: 0.88rem !important;
+  }
+
+  .auth-card .btn-host-portal {
+    font-size: 0.88rem !important;
+    padding: 10px 14px !important;
   }
 
   .auth-footer {
-    font-size: 0.85rem !important;
+    font-size: 0.88rem !important;
     margin-top: 1.25rem !important;
   }
 }

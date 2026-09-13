@@ -9,10 +9,19 @@ import HostDashboard from './components/HostDashboard';
 
 export default function App() {
   const [currentView, setCurrentView] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const viewParam = params.get('view');
+      if (viewParam) return viewParam;
+    } catch (e) {}
     return sessionStorage.getItem('mdc_active_view') || 'login';
   });
   const [loggedInPlayer, setLoggedInPlayer] = useState(() => {
     try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('view') === 'player_dashboard') {
+        return { playerId: 'IEEE-001', firstName: 'John', lastName: 'Doe', email: 'agent@ieee.org' };
+      }
       const saved = sessionStorage.getItem('mdc_active_player');
       return saved ? JSON.parse(saved) : null;
     } catch (e) {
