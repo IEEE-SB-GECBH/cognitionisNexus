@@ -20,7 +20,7 @@ export default function HostLoginCard({ onNavigateToPlayerLogin, onHostLoginSucc
       const result = await authService.hostLogin(hostId);
       // TODO: redirect to HostDashboard
       setStatus({ type: 'success', message: 'Host access granted.' });
-      
+
       if (onHostLoginSuccess) {
         onHostLoginSuccess({
           playerId: result.hostId,
@@ -39,7 +39,7 @@ export default function HostLoginCard({ onNavigateToPlayerLogin, onHostLoginSucc
   return (
     <div className="auth-card">
       <div className="card-header-bar"></div>
-      
+
       <div className="auth-header">
         <h1 className="brand-title">
           HOST <span className="accent-text">PORTAL</span>
@@ -65,7 +65,7 @@ export default function HostLoginCard({ onNavigateToPlayerLogin, onHostLoginSucc
               id="hostId"
               type="text"
               className="form-input"
-              placeholder="ENTER HOST ID (e.g. HOST-IEEE-2026)"
+              placeholder="ENTER HOST ID"
               value={hostId}
               onChange={(e) => setHostId(e.target.value)}
               disabled={loading}
@@ -80,9 +80,9 @@ export default function HostLoginCard({ onNavigateToPlayerLogin, onHostLoginSucc
         </button>
 
         <div className="form-footer-links" style={{ justifyContent: 'center' }}>
-          <button 
-            type="button" 
-            onClick={() => onNavigateToPlayerLogin()} 
+          <button
+            type="button"
+            onClick={() => onNavigateToPlayerLogin()}
             className="auth-link auth-link-primary"
             disabled={loading}
           >

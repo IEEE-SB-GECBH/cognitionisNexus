@@ -6,7 +6,7 @@ export default function LoginCard({ defaultPlayerId = '', onNavigateToRegister, 
     playerId: defaultPlayerId,
     password: ''
   });
-  
+
   const [showPassword, setShowPassword] = useState(false);
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,7 @@ export default function LoginCard({ defaultPlayerId = '', onNavigateToRegister, 
     try {
       const result = await authService.login(formData);
       setStatus({ type: 'success', message: 'Verification established. Logging in...' });
-      
+
       if (onLoginSuccess) {
         const playerObj = result.player || { playerId: result.playerId || formData.playerId, email: result.user?.email };
         onLoginSuccess(playerObj);
@@ -50,11 +50,11 @@ export default function LoginCard({ defaultPlayerId = '', onNavigateToRegister, 
   const renderEyeIcon = () => (
     showPassword ? (
       <svg className="eye-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
       </svg>
     ) : (
       <svg className="eye-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm-9.35-4l17.7 17.7-1.41 1.41L12.44 19.3c-.15.02-.3.03-.44.03-5 0-9.27-3.11-11-7.5.76-1.92 2.01-3.57 3.6-4.79L1.24 5.66l1.41-1.41z"/>
+        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm-9.35-4l17.7 17.7-1.41 1.41L12.44 19.3c-.15.02-.3.03-.44.03-5 0-9.27-3.11-11-7.5.76-1.92 2.01-3.57 3.6-4.79L1.24 5.66l1.41-1.41z" />
       </svg>
     )
   );
@@ -62,7 +62,7 @@ export default function LoginCard({ defaultPlayerId = '', onNavigateToRegister, 
   return (
     <div className="auth-card">
       <div className="card-header-bar"></div>
-      
+
       <div className="auth-header">
         <h1 className="brand-title">
           COGNITIONIS <span className="accent-text">NEXUS</span>
@@ -89,7 +89,7 @@ export default function LoginCard({ defaultPlayerId = '', onNavigateToRegister, 
               name="playerId"
               type="text"
               className="form-input"
-              placeholder="e.g. IEEE-001"
+              placeholder="ENTER PLAYER ID"
               value={formData.playerId}
               onChange={handleChange}
               disabled={loading}
@@ -131,17 +131,17 @@ export default function LoginCard({ defaultPlayerId = '', onNavigateToRegister, 
         </button>
 
         <div className="form-footer-links">
-          <button 
-            type="button" 
-            onClick={onNavigateToForgot} 
+          <button
+            type="button"
+            onClick={onNavigateToForgot}
             className="auth-link"
             disabled={loading}
           >
             Forgot Credentials?
           </button>
-          <button 
-            type="button" 
-            onClick={onNavigateToRegister} 
+          <button
+            type="button"
+            onClick={onNavigateToRegister}
             className="auth-link auth-link-primary"
             disabled={loading}
           >
@@ -151,9 +151,9 @@ export default function LoginCard({ defaultPlayerId = '', onNavigateToRegister, 
 
         {onNavigateToHost && (
           <div className="host-portal-container">
-            <button 
-              type="button" 
-              onClick={onNavigateToHost} 
+            <button
+              type="button"
+              onClick={onNavigateToHost}
               className="btn-host-portal"
               disabled={loading}
             >
